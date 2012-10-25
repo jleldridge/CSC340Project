@@ -44,13 +44,13 @@ public class FamilyMatcher {
 		if (age) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				
+			//TODO: not implemented yet
 			}
 		}
 		if (income) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				
+			//TODO: not implemented yet
 			}
 		}
 		if (disability) {
@@ -80,7 +80,7 @@ public class FamilyMatcher {
 		if (distance) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				
+				//TODO: not implemented yet
 			}
 		}
 
