@@ -26,13 +26,19 @@ public class FamilyMatcher {
 		if (ethnicity) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				
+				Family pf = iter.next();
+				if(pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
+					iter.remove();
+				}
 			}
 		}
 		if (language) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				
+				Family pf = iter.next();
+				if(pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
+					iter.remove();
+				}
 			}
 		}
 		if (age) {
@@ -48,9 +54,13 @@ public class FamilyMatcher {
 			}
 		}
 		if (disability) {
+			//keep track of the number of children between the families that have
+			//the same disabilities
+			int matchingChildren = 0;
 			Iterator<Family> iter = possibleMatches.iterator();
+			
 			while(iter.hasNext()){
-				
+				for()
 			}
 		}
 		if (distance) {
