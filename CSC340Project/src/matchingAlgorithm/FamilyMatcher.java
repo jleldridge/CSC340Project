@@ -27,7 +27,7 @@ public class FamilyMatcher {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
 				Family pf = iter.next();
-				if(pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
+				if(!pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
 					iter.remove();
 				}
 			}
@@ -36,7 +36,7 @@ public class FamilyMatcher {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
 				Family pf = iter.next();
-				if(pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
+				if(!pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
 					iter.remove();
 				}
 			}
@@ -56,11 +56,25 @@ public class FamilyMatcher {
 		if (disability) {
 			//keep track of the number of children between the families that have
 			//the same disabilities
-			int matchingChildren = 0;
+			boolean matchingChildren = false;
 			Iterator<Family> iter = possibleMatches.iterator();
 			
 			while(iter.hasNext()){
-				for()
+				Family pf = iter.next();
+				for(Child c : f.getChildren()){
+					for(Child pc : pf.getChildren()){
+						for(String d : c.getDisabilities()){
+							for(String pd : pc.getDisabilities()){
+								if(d.equalsIgnoreCase(pd)){
+									matchingChildren = true;
+								}
+							}
+						}
+					}
+				}
+				if(!matchingChildren){
+					iter.remove();
+				}
 			}
 		}
 		if (distance) {
