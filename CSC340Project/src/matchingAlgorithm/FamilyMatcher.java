@@ -36,7 +36,7 @@ public class FamilyMatcher {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
 				Family pf = iter.next();
-				if(!pf.getEthnicity().equalsIgnoreCase(f.getEthnicity())){
+				if(!pf.getLanguage().equalsIgnoreCase(f.getLanguage())){
 					iter.remove();
 				}
 			}
@@ -75,6 +75,7 @@ public class FamilyMatcher {
 				if(!matchingChildren){
 					iter.remove();
 				}
+			matchingChildren = false;
 			}
 		}
 		if (distance) {
@@ -134,5 +135,9 @@ public class FamilyMatcher {
 
 	public void setIncome(boolean income) {
 		this.income = income;
+	}
+	
+	public ArrayList<Family> getFamilies(){
+		return families;
 	}
 }
