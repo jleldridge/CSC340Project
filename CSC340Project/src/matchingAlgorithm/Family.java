@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Family {
+	//this class probably needs a toString method
+	
 	private String name;
 	private String address;
 	private ArrayList<Child> children;
