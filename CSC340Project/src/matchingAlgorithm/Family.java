@@ -89,6 +89,12 @@ public class Family {
 		this.income = income;
 	}
 	
+	public void setMatched(boolean matched){
+		this.matched = matched;
+	}
 	
+	public boolean isMatched(){
+		return matched;
+	}
 	
 }

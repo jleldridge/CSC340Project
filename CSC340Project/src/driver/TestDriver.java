@@ -6,7 +6,7 @@ import matchingAlgorithm.Child;
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
 import matchingAlgorithm.gui.*;
-public class Driver {
+public class TestDriver {
 	public static void main(String[] args){
 		ArrayList<Family> families = new ArrayList<Family>();
 		ArrayList<Child> children = new ArrayList<Child>();
@@ -48,7 +48,9 @@ public class Driver {
 		for(Family f : matcher.getPossibleMatches(families.get(1))){
 			System.out.println(f.getName());
 		}
-		//new MatchingAlgorithmGui(families);
+		
+		//create gui
+		new MatchingAlgorithmGui(families);
 		
 	}
 }
