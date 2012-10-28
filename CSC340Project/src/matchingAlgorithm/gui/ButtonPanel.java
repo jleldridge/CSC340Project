@@ -42,7 +42,7 @@ public class ButtonPanel extends JPanel {
 		this.add(age, this);
 		age.addItemListener(ilistener);
 		
-		income = new JCheckBox("Language");
+		income = new JCheckBox("Income");
 		this.add(income, this);
 		income.addItemListener(ilistener);
 	}
