@@ -10,12 +10,11 @@ import matchingAlgorithm.Family;
 public class FamilyPanel extends JPanel {
 	JTable allFamilies;
 	JTable matchingFamilies;
+	JScrollPane matchingFamiliesTable;
+	String[] tableLabels = {"Name", "Address", "Date Joined", "Language", "Children", "Matched"};
 	
 	public FamilyPanel(ArrayList<Family> families){
 		super();
-		
-		//the table labels for both families
-		String[] tableLabels = {"Name", "Address", "Date Joined", "Language", "Children", "Matched"};
 		
 		//the family info in allFamilies
 		Object[][] allFamiliesData = new Object[families.size()][6];
@@ -28,7 +27,6 @@ public class FamilyPanel extends JPanel {
 			allFamiliesData[i][3] = f.getLanguage();
 			allFamiliesData[i][4] = f.getChildren();
 			allFamiliesData[i][5] = f.isMatched();
-			//System.out.println(i + " worked");
 		}
 		
 		//for testing remove later
@@ -43,9 +41,40 @@ public class FamilyPanel extends JPanel {
 		//System.out.println("created first table");
 		
 		matchingFamilies = new JTable(test2Content, tableLabels);
-		JScrollPane matchingFamiliesTable = new JScrollPane(matchingFamilies);
+		matchingFamiliesTable = new JScrollPane(matchingFamilies);
 		this.add(matchingFamiliesTable, BorderLayout.LINE_END);
 		
 		//System.out.println("created second table");
+	}
+	
+	public JTable getAllFamilies(){
+		return allFamilies;
+	}
+	
+	public JTable getMatchingFamilies(){
+		return matchingFamilies;
+	}
+	
+	public void buildMatchTable(ArrayList<Family> matches){
+		Object[][] matchingFamiliesData = new Object[matches.size()][6];
+		for(int i = 0; i < matches.size(); i++){
+			Family f = matches.get(i);
+			matchingFamiliesData[i][0] = f.getName();
+			matchingFamiliesData[i][1] = f.getAddress();
+			matchingFamiliesData[i][2] = f.getDateJoined();
+			matchingFamiliesData[i][3] = f.getLanguage();
+			matchingFamiliesData[i][4] = f.getChildren();
+			matchingFamiliesData[i][5] = f.isMatched();
+		}
+		
+		//recreate matchingFamilies table to contain matches for this family
+		this.remove(matchingFamiliesTable);
+		matchingFamilies = new JTable(matchingFamiliesData, tableLabels);
+		matchingFamiliesTable = new JScrollPane(matchingFamilies);
+		this.add(matchingFamiliesTable, BorderLayout.LINE_END);
+		
+		//display the new state of this JPanel
+		this.revalidate();
+		this.repaint();
 	}
 }
