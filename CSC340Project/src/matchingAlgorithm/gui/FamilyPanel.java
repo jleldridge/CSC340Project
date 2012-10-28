@@ -29,9 +29,6 @@ public class FamilyPanel extends JPanel {
 			allFamiliesData[i][5] = f.isMatched();
 		}
 		
-		//for testing remove later
-		Object[][] test2Content = {{"test2", "test2","test2","test2","test2","test2",}};
-		
 		//System.out.println("test content worked");
 		
 		allFamilies = new JTable(allFamiliesData, tableLabels);
@@ -40,7 +37,7 @@ public class FamilyPanel extends JPanel {
 		
 		//System.out.println("created first table");
 		
-		matchingFamilies = new JTable(test2Content, tableLabels);
+		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
 		this.add(matchingFamiliesTable, BorderLayout.LINE_END);
 		

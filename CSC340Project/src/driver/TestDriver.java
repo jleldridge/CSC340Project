@@ -24,30 +24,6 @@ public class TestDriver {
 		families.add(new Family("Potter", "5301 Jasper Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
 		families.add(new Family("Garcia", "5301 Harper Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
 		families.add(new Family("Stark", "5301 some other Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
-		FamilyMatcher matcher = new FamilyMatcher(families);
-		matcher.setDisability(true); matcher.setLanguage(true);
-		
-		for(Family f : families){
-			System.out.println(f.getName());
-		}
-		
-		System.out.println();
-		System.out.println("Matches for Smiths");
-		for(Family f : matcher.getPossibleMatches(families.get(0))){
-			System.out.println(f.getName());
-		}
-		
-		System.out.println();
-		System.out.println("Matches for Garcias");
-		for(Family f : matcher.getPossibleMatches(families.get(3))){
-			System.out.println(f.getName());
-		}
-		
-		System.out.println();
-		System.out.println("Matches for Lars");
-		for(Family f : matcher.getPossibleMatches(families.get(1))){
-			System.out.println(f.getName());
-		}
 		
 		//create gui
 		new MatchingAlgorithmGui(families);
