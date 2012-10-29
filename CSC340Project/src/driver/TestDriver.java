@@ -11,20 +11,28 @@ public class TestDriver {
 		ArrayList<Family> families = new ArrayList<Family>();
 		ArrayList<Child> children = new ArrayList<Child>();
 		ArrayList<String> disabilities = new ArrayList<String>();
-		disabilities.add("Dyslexia");
+		disabilities.add("MS");
 		children.add(new Child("Billy", 10, disabilities, "male"));
 		
 		families.add(new Family("Smith", "5301 Turner Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
+		families.get(0).setEthnicity("Black");
+		
 		families.add(new Family("Lars", "5303 Turner Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
+		families.get(1).setEthnicity("White");
 		
 		disabilities = new ArrayList<String>();
 		disabilities.add("ADHD");
 		children = new ArrayList<Child>();
 		children.add(new Child ("Sam", 13, disabilities, "male"));
-		families.add(new Family("Potter", "5301 Jasper Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
-		families.add(new Family("Garcia", "5301 Harper Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
-		families.add(new Family("Stark", "5301 some other Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
 		
+		families.add(new Family("Potter", "5301 Jasper Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
+		families.get(2).setEthnicity("Hispanic");
+		
+		families.add(new Family("Garcia", "5301 Harper Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
+		families.get(3).setEthnicity("Hispanic");
+		
+		families.add(new Family("Stark", "5301 some other Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
+		families.get(4).setEthnicity("Hispanic");
 		//create gui
 		new MatchingAlgorithmGui(families);
 		

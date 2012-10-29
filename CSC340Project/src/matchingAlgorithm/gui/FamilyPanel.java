@@ -5,19 +5,20 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import matchingAlgorithm.Child;
 import matchingAlgorithm.Family;
 
 public class FamilyPanel extends JPanel {
 	JTable allFamilies;
 	JTable matchingFamilies;
 	JScrollPane matchingFamiliesTable;
-	String[] tableLabels = {"Name", "Address", "Date Joined", "Language", "Children", "Matched"};
+	String[] tableLabels = {"Name", "Address", "Date Joined", "Language", "Ethnicity", "Children", "Matched"};
 	
 	public FamilyPanel(ArrayList<Family> families){
 		super();
 		
 		//the family info in allFamilies
-		Object[][] allFamiliesData = new Object[families.size()][6];
+		Object[][] allFamiliesData = new Object[families.size()][7];
 		
 		for(int i = 0; i < families.size(); i++){
 			Family f = families.get(i);
@@ -25,8 +26,18 @@ public class FamilyPanel extends JPanel {
 			allFamiliesData[i][1] = f.getAddress();
 			allFamiliesData[i][2] = f.getDateJoined();
 			allFamiliesData[i][3] = f.getLanguage();
-			allFamiliesData[i][4] = f.getChildren();
-			allFamiliesData[i][5] = f.isMatched();
+			allFamiliesData[i][4] = f.getEthnicity();
+			
+			StringBuilder data = new StringBuilder();
+			for(Child c : f.getChildren()){
+				data.append(c.getName() + ":");
+				for(String d : c.getDisabilities()){
+					data.append(" " + d);
+				}
+			}
+			allFamiliesData[i][5] = data.toString();
+			
+			allFamiliesData[i][6] = f.isMatched();
 		}
 		
 		//System.out.println("test content worked");
@@ -53,15 +64,25 @@ public class FamilyPanel extends JPanel {
 	}
 	
 	public void buildMatchTable(ArrayList<Family> matches){
-		Object[][] matchingFamiliesData = new Object[matches.size()][6];
+		Object[][] matchingFamiliesData = new Object[matches.size()][7];
 		for(int i = 0; i < matches.size(); i++){
 			Family f = matches.get(i);
 			matchingFamiliesData[i][0] = f.getName();
 			matchingFamiliesData[i][1] = f.getAddress();
 			matchingFamiliesData[i][2] = f.getDateJoined();
 			matchingFamiliesData[i][3] = f.getLanguage();
-			matchingFamiliesData[i][4] = f.getChildren();
-			matchingFamiliesData[i][5] = f.isMatched();
+			matchingFamiliesData[i][4] = f.getEthnicity();
+			
+			StringBuilder data = new StringBuilder();
+			for(Child c : f.getChildren()){
+				data.append(c.getName() + ":");
+				for(String d : c.getDisabilities()){
+					data.append(" " + d);
+				}
+			}
+			matchingFamiliesData[i][5] = data.toString();
+			
+			matchingFamiliesData[i][6] = f.isMatched();
 		}
 		
 		//recreate matchingFamilies table to contain matches for this family
