@@ -24,6 +24,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 	
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// add the button container
 		buttons = new ButtonPanel(this, this);

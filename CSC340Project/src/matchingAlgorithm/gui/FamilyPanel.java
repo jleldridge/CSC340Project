@@ -16,6 +16,7 @@ public class FamilyPanel extends JPanel {
 	
 	public FamilyPanel(ArrayList<Family> families){
 		super();
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		//the family info in allFamilies
 		Object[][] allFamiliesData = new Object[families.size()][7];
@@ -34,6 +35,7 @@ public class FamilyPanel extends JPanel {
 				for(String d : c.getDisabilities()){
 					data.append(" " + d);
 				}
+				data.append("  ");
 			}
 			allFamiliesData[i][5] = data.toString();
 			
@@ -44,13 +46,13 @@ public class FamilyPanel extends JPanel {
 		
 		allFamilies = new JTable(allFamiliesData, tableLabels);
 		JScrollPane allFamiliesTable = new JScrollPane(allFamilies);
-		this.add(allFamiliesTable, BorderLayout.LINE_START);
+		this.add(allFamiliesTable, this);
 		
 		//System.out.println("created first table");
 		
 		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable, BorderLayout.LINE_END);
+		this.add(matchingFamiliesTable, this);
 		
 		//System.out.println("created second table");
 	}
@@ -79,6 +81,7 @@ public class FamilyPanel extends JPanel {
 				for(String d : c.getDisabilities()){
 					data.append(" " + d);
 				}
+				data.append("  ");
 			}
 			matchingFamiliesData[i][5] = data.toString();
 			

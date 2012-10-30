@@ -28,13 +28,27 @@ public class TestDriver {
 		families.add(new Family("Potter", "5301 Jasper Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
 		families.get(2).setEthnicity("Hispanic");
 		
+		children = new ArrayList<Child>();
+		disabilities = new ArrayList<String>();
+		disabilities.add("MS");
+		children.add(new Child("Tom", 10, disabilities, "male"));
+		disabilities = new ArrayList<String>();
+		disabilities.add("ADHD");
+		children.add(new Child ("Jane", 13, disabilities, "female"));
 		families.add(new Family("Garcia", "5301 Harper Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
 		families.get(3).setEthnicity("Hispanic");
 		
 		families.add(new Family("Stark", "5301 some other Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
-		families.get(4).setEthnicity("Hispanic");
+		families.get(4).setEthnicity("Asian");
+		
+		
+		
+		
+		
+		
+		
+		
 		//create gui
 		new MatchingAlgorithmGui(families);
-		
 	}
 }
