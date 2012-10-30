@@ -43,8 +43,9 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("find matches")){
-			Family f = matcher.getFamilies().get(familyTables.getAllFamilies().getSelectedRow());
+		int row = familyTables.getAllFamilies().getSelectedRow();
+		if(e.getActionCommand().equals("find matches") && row >= 0){
+			Family f = matcher.getFamilies().get(row);
 			familyTables.buildMatchTable(matcher.getPossibleMatches(f));
 			this.repaint();
 		}

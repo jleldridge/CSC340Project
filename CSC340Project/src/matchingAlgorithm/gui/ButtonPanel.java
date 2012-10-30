@@ -1,6 +1,7 @@
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
@@ -8,10 +9,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class ButtonPanel extends JPanel {
 	JButton findMatches;
 	JCheckBox ethnicity, language, disability, distance, age, income;
+	JTextField distanceDiff, ageDiff, incomeDiff;
 	
 	public ButtonPanel(ActionListener alistener, ItemListener ilistener){
 		super();
