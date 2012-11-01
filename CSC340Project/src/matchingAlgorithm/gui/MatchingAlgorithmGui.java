@@ -10,43 +10,71 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
+import matchingAlgorithm.ResultsPanel;
 
 public class MatchingAlgorithmGui extends JFrame implements ActionListener, ItemListener{
-	FamilyPanel familyTables;
-	ButtonPanel buttons;
+	//plain java objects
 	FamilyMatcher matcher;
+	
+	//gui components with their own JPanel implementations
+	FamilyPanel familyTable;
+	ButtonPanel criteria;
+	ResultsPanel resultTable;
+	
+	//gui components added directly to the JFrame
+	JLabel instructions;
+	
 	
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//initialize the JLabel that holds instruction text
+		instructions = new JLabel("Pick a family to match.");
+		this.add(instructions, BorderLayout.PAGE_START);
+		
 		// add the button container
-		buttons = new ButtonPanel(this, this);
-		this.add(buttons, BorderLayout.LINE_END);
+		criteria = new ButtonPanel(this, this);
+		this.add(criteria, BorderLayout.LINE_END);
 		
 		// add the table container
-		familyTables = new FamilyPanel(families);
-		this.add(familyTables, BorderLayout.LINE_START);
+		familyTable = new FamilyPanel(families);
+		this.add(familyTable, BorderLayout.LINE_START);
 		
 		//initialize the FamilyMatcher
 		matcher = new FamilyMatcher(families);
 		
-		pack();
+		//initialize the result table
+		resultTable = new ResultsPanel();
+		
+		setSize(800, 600);
 		this.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int row = familyTables.getAllFamilies().getSelectedRow();
+		//if the "find matches" button is clicked, build the matches
+		//table and display that panel.
+		int row = familyTable.getAllFamilies().getSelectedRow();
 		if(e.getActionCommand().equals("find matches") && row >= 0){
 			Family f = matcher.getFamilies().get(row);
-			familyTables.buildMatchTable(matcher.getPossibleMatches(f));
+			resultTable.buildMatchTable(matcher.getPossibleMatches(f));
+			
+			//remove the family table panel from the JFrame
+			this.remove(familyTable);
+			
+			//add the results table panel to the JFrame
+			this.add(resultTable, BorderLayout.LINE_START);
+			
+			//repaint the JFrame
+			this.validate();
 			this.repaint();
 		}
 	}
@@ -55,7 +83,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 	public void itemStateChanged(ItemEvent e) {
 		Object source = e.getItemSelectable();
 		
-		if(source == buttons.getEthnicity()){
+		if(source == criteria.getEthnicity()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setEthnicity(true);
 			}
@@ -63,7 +91,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 				matcher.setEthnicity(false);
 			}
 		}
-		else if(source == buttons.getLanguage()){
+		else if(source == criteria.getLanguage()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setLanguage(true);
 			}
@@ -71,7 +99,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 				matcher.setLanguage(false);
 			}
 		}
-		else if(source == buttons.getDisability()){
+		else if(source == criteria.getDisability()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setDisability(true);
 			}
@@ -79,7 +107,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 				matcher.setDisability(false);
 			}
 		}
-		else if(source == buttons.getDistance()){
+		else if(source == criteria.getDistance()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setDistance(true);
 			}
@@ -87,7 +115,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 				matcher.setDistance(false);
 			}
 		}
-		else if(source == buttons.getAge()){
+		else if(source == criteria.getAge()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setAge(true);
 			}
@@ -95,7 +123,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 				matcher.setAge(false);
 			}
 		}
-		else if(source == buttons.getIncome()){
+		else if(source == criteria.getIncome()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setIncome(true);
 			}
