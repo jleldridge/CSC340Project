@@ -17,7 +17,6 @@ import javax.swing.JTable;
 
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
-import matchingAlgorithm.ResultsPanel;
 
 public class MatchingAlgorithmGui extends JFrame implements ActionListener, ItemListener{
 	//plain java objects
@@ -83,6 +82,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 	public void itemStateChanged(ItemEvent e) {
 		Object source = e.getItemSelectable();
 		
+		//change state of matcher criteria based on state of checkboxes in GUI
 		if(source == criteria.getEthnicity()){
 			if(e.getStateChange() == ItemEvent.SELECTED){
 				matcher.setEthnicity(true);

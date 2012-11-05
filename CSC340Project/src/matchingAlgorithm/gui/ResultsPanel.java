@@ -1,10 +1,13 @@
-package matchingAlgorithm;
+package matchingAlgorithm.gui;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import matchingAlgorithm.Child;
+import matchingAlgorithm.Family;
 
 public class ResultsPanel extends JPanel{
 	JTable matchingFamilies;
