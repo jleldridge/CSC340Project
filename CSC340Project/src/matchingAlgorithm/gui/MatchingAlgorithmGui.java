@@ -37,23 +37,22 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 		
 		//initialize the JLabel that holds instruction text
 		instructions = new JLabel("Pick a family to match.");
-		this.add(instructions, BorderLayout.PAGE_START);
+		this.add(instructions, BorderLayout.NORTH);
 		
 		// add the button container
 		criteria = new ButtonPanel(this, this);
-		this.add(criteria, BorderLayout.LINE_END);
+		this.add(criteria, BorderLayout.EAST);
 		
 		// add the table container
 		familyTable = new FamilyPanel(families);
-		this.add(familyTable, BorderLayout.LINE_START);
+		this.add(familyTable, BorderLayout.WEST);
 		
 		//initialize the FamilyMatcher
 		matcher = new FamilyMatcher(families);
 		
 		//initialize the result table
 		resultTable = new ResultsPanel();
-		
-		setSize(800, 600);
+		setSize(1000, 600);
 		this.setVisible(true);
 	}
 
@@ -70,7 +69,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener, Item
 			this.remove(familyTable);
 			
 			//add the results table panel to the JFrame
-			this.add(resultTable, BorderLayout.LINE_START);
+			this.add(resultTable, BorderLayout.WEST);
 			
 			//repaint the JFrame
 			this.validate();
