@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,10 +18,11 @@ public class ResultsPanel extends JPanel{
 	
 	public ResultsPanel(){
 		super();
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable);
+		this.add(matchingFamiliesTable, this);
 		
 	}
 	
@@ -53,12 +55,8 @@ public class ResultsPanel extends JPanel{
 		this.remove(matchingFamiliesTable);
 		matchingFamilies = new JTable(matchingFamiliesData, tableLabels);
 		
-		//set the size of the columns
-		matchingFamilies.getColumnModel().getColumn(0).setMinWidth(400);
-		matchingFamilies.getColumnModel().getColumn(1).setMinWidth(400);
-		
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable, BorderLayout.LINE_END);
+		this.add(matchingFamiliesTable, this);
 		
 		//display the new state of this JPanel
 		this.revalidate();
