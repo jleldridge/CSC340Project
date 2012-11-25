@@ -88,7 +88,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		// if the "Next" button is pushed
 		if (e.getActionCommand().equals("next")) {
-			if(currentScreen < 2){
+			if (currentScreen < 2) {
 				currentScreen++;
 			}
 
@@ -105,16 +105,15 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 					this.add(criteria, BorderLayout.CENTER);
 
 					// change instructions
-					instructions.setText("Select the criteria by which this family will "
-									+ "be matched with other families.");
+					instructions.setText("Select the criteria" +
+							" by which this family will be matched with other families.");
 
 					// repaint the JFrame
 					this.validate();
 					this.repaint();
-				}
-				else{
-					//if no family was selected reset currentScreen to 0
-					//maybe also add an alert pop-up box here
+				} else {
+					// if no family was selected reset currentScreen to 0
+					// maybe also add an alert pop-up box here
 					currentScreen = 0;
 				}
 				break;
@@ -122,49 +121,60 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 			// advancing from showing criteria to showing matches
 			case 2:
 				// might take these lines out later
-				resultTable.buildMatchTable(matcher.getPossibleMatches(selectedFamily));
+				resultTable.buildMatchTable(matcher
+						.getPossibleMatches(selectedFamily));
 
-				//switch to next panel
+				// switch to next panel
 				this.remove(criteria);
 				this.add(resultTable, BorderLayout.CENTER);
+				
+				//change the instructions
+				instructions.setText("Pick a family to match with the "
+						+ selectedFamily.getName() + " family.");
 
 				// repaint the JFrame
 				this.validate();
 				this.repaint();
-				
-				
+
 				break;
 			}
 		}
-		
-		//if the previous button is pressed
-		if(e.getActionCommand().equals("previous")){
-			if(currentScreen > 0){
+
+		// if the previous button is pressed
+		if (e.getActionCommand().equals("previous")) {
+			if (currentScreen > 0) {
 				currentScreen--;
 			}
-			
-			switch(currentScreen){
-			//transition from results back to criteria
+
+			switch (currentScreen) {
+			// transition from results back to criteria
 			case 1:
-				//switch to previous panel
+				// switch to previous panel
 				this.remove(resultTable);
 				this.add(criteria, BorderLayout.CENTER);
 				
-				//repaint the JFrame
+				// change instructions
+				instructions.setText("Select the criteria" +
+						" by which this family will be matched with other families.");
+				
+				// repaint the JFrame
 				this.validate();
 				this.repaint();
-				
+
 				break;
-			//transition from criteria back to family select
+			// transition from criteria back to family select
 			case 0:
-				//switch to previous panel
+				// switch to previous panel
 				this.remove(criteria);
 				this.add(familyTable, BorderLayout.CENTER);
 				
-				//repaint the JFrame
+				//change the instructions
+				instructions.setText("Pick a family to match and click the \"Next\" button.");
+
+				// repaint the JFrame
 				this.validate();
 				this.repaint();
-				
+
 				break;
 			}
 		}

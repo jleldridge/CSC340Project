@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class ButtonPanel extends JPanel {
-	JButton findMatches;
 	JCheckBox ethnicity, language, disability, distance, age, income;
 	JTextField distanceDiff, ageDiff, incomeDiff;
 	
@@ -21,11 +20,6 @@ public class ButtonPanel extends JPanel {
 	public ButtonPanel(ActionListener alistener, ItemListener ilistener){
 		super();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		findMatches = new JButton("Find Matches");
-		findMatches.setActionCommand("find matches");
-		findMatches.addActionListener(alistener);
-		
-		this.add(findMatches, this);
 		
 		ethnicity = new JCheckBox("Ethnicity");
 		this.add(ethnicity, this);
