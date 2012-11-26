@@ -115,7 +115,16 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 
 			// advancing from showing criteria to showing matches
 			case 2:
-				// might take these lines out later
+				if(matcher.isAge()){
+					matcher.setAgeDiff(criteria.getAgeDiff());
+				}
+				if(matcher.isDistance()){
+					matcher.setDistanceDiff(criteria.getDistanceDiff());
+				}
+				if(matcher.isIncome()){
+					matcher.setIncomeDiff(criteria.getDistanceDiff());
+				}
+				
 				resultTable.buildMatchTable(matcher
 						.getPossibleMatches(selectedFamily));
 

@@ -47,7 +47,27 @@ public class FamilyMatcher {
 		if (age) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-			//TODO: not implemented yet
+				//flag telling if this is a possible matching family
+				boolean possibleMatch = false;
+				
+				Family pf = iter.next();
+				Iterator<Child> fciter = f.getChildren().iterator();
+				
+				while(fciter.hasNext()){
+					Child fc = fciter.next();
+					Iterator<Child> pfciter = pf.getChildren().iterator();
+					while(pfciter.hasNext()){
+						Child pfc = pfciter.next();
+						if(Math.abs(pfc.getAge() - fc.getAge()) <= ageDiff){
+							//set flag to true
+							possibleMatch = true;
+						}
+					}
+				}
+				
+				if(!possibleMatch){
+					iter.remove();
+				}
 			}
 		}
 		if (income) {
@@ -155,5 +175,21 @@ public class FamilyMatcher {
 	
 	public int getIncomeDiff(){
 		return incomeDiff;
+	}
+
+	public int getDistanceDiff() {
+		return distanceDiff;
+	}
+
+	public void setDistanceDiff(int distanceDiff) {
+		this.distanceDiff = distanceDiff;
+	}
+
+	public int getAgeDiff() {
+		return ageDiff;
+	}
+
+	public void setAgeDiff(int ageDiff) {
+		this.ageDiff = ageDiff;
 	}
 }

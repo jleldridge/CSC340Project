@@ -97,4 +97,34 @@ public class ButtonPanel extends JPanel {
 	public JCheckBox getIncome() {
 		return income;
 	}
+	
+	public int getDistanceDiff(){
+		int x = 0;
+		try{
+			x = Integer.parseInt(distanceDiff.getText());
+		}catch(Exception e){
+			x = 0;
+		}
+		return x;
+	}
+	
+	public int getIncomeDiff(){
+		int x = 0;
+		try{
+			x = Integer.parseInt(incomeDiff.getText());
+		}catch(Exception e){
+			x = 0;
+		}
+		return x;
+	}
+	
+	public int getAgeDiff(){
+		int x = 0;
+		try{
+			x = Integer.parseInt(ageDiff.getText());
+		}catch(Exception e){
+			x = 0;
+		}
+		return x;
+	}
 }
