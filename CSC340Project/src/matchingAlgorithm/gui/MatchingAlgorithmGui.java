@@ -24,9 +24,6 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	// index of the currently selected family in the table
 	int selectedRow;
 
-	// "next" and "previous" buttons
-	JButton next;
-	JButton previous;
 	// variable to hold the current screen state to determine what the
 	// "Next" and "Previous" buttons do
 	int currentScreen;
@@ -38,7 +35,9 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 
 	// gui components added directly to the JFrame
 	JLabel instructions;
-
+	JButton next;
+	JButton previous;
+	
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
