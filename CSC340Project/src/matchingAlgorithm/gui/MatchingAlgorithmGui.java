@@ -44,8 +44,10 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	JButton createMatch;
 	JButton viewInfo;
 
-	public MatchingAlgorithmGui(ArrayList<Family> families) {
+	public MatchingAlgorithmGui() {
 		super("Family Matcher");
+		
+		ArrayList<Family> families = new ArrayList<Family>();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// set currentScreen to 0 and build the first screen

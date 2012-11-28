@@ -7,6 +7,7 @@ import matchingAlgorithm.Child;
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
 import matchingAlgorithm.gui.*;
+/*
 public class TestDriver {
 	public static void main(String[] args){
 		ArrayList<Family> families = new ArrayList<Family>();
@@ -50,6 +51,7 @@ public class TestDriver {
 		
 		
 		//create gui
-		new MatchingAlgorithmGui(families);
+		new MatchingAlgorithmGui();
 	}
 }
+*/
