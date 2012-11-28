@@ -121,4 +121,17 @@ public class Family {
 		return sb.toString();
 	}
 	
+	@Override
+	public boolean equals(Object o){
+		boolean equals = false;
+		
+		//the families are the same if they have the same name and address
+		Family f = (Family)o;
+		if(name.equals(f.getName()) && address.equals(f.getAddress())){
+			equals = true;
+		}
+		
+		return equals;
+	}
+	
 }

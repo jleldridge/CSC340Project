@@ -230,10 +230,16 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 			int row = resultTable.getMatchingFamilies().getSelectedRow();
 			if (row >= 0) {
 				Family matchingFamily = resultTable.getMatches().get(row);
-				matcher.createMatch(selectedFamily, matchingFamily);
-				JOptionPane.showMessageDialog(null,
+				boolean matchWorked = matcher.createMatch(selectedFamily, matchingFamily);
+				
+				if(matchWorked){
+					JOptionPane.showMessageDialog(null,
 						"Match created between " + selectedFamily.getName()
 								+ " and " + matchingFamily.getName() + ".");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Error: One of these families is already matched.");
+				}
 			}
 		}
 		
@@ -243,7 +249,43 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				int row = familyTable.getAllFamilies().getSelectedRow();
 				if(row >= 0){
 					Family displayFamily =  matcher.getFamilies().get(row);
-					JOptionPane.showMessageDialog(null, displayFamily.toString());
+					
+					String match = "none";
+					ArrayList<ArrayList<Family>> matches = matcher.getMatches();
+					for(ArrayList<Family> arr : matches){
+						if(arr.contains(displayFamily)){
+							for(Family f : arr){
+								if(!f.equals(displayFamily)){
+									match = f.getName();
+								}
+							}
+						}
+					}
+					
+					JOptionPane.showMessageDialog(null, displayFamily.toString() + "\n" +
+														"Matched Family: " + match);
+				}
+			}
+			
+			if(currentScreen == 2){
+				int row = resultTable.getMatchingFamilies().getSelectedRow();
+				if(row >= 0){
+					Family displayFamily =  resultTable.getMatches().get(row);
+					
+					String match = "none";
+					ArrayList<ArrayList<Family>> matches = matcher.getMatches();
+					for(ArrayList<Family> arr : matches){
+						if(arr.contains(displayFamily)){
+							for(Family f : arr){
+								if(!f.equals(displayFamily)){
+									match = f.getName();
+								}
+							}
+						}
+					}
+					
+					JOptionPane.showMessageDialog(null, displayFamily.toString() + "\n" +
+														"Matched Family: " + match);
 				}
 			}
 		}

@@ -22,11 +22,19 @@ public class FamilyMatcher {
 		matches = new ArrayList<ArrayList<Family>>();
 	}
 	
-	public void createMatch(Family f1, Family f2){
+	public boolean createMatch(Family f1, Family f2){
+		//make sure the families aren't already matched
+		for(ArrayList<Family> arr : matches){
+			if(arr.contains(f1) || arr.contains(f2)){
+				return false;
+			}
+		}
 		ArrayList<Family> match = new ArrayList<Family>();
 		match.add(f1);
 		match.add(f2);
 		matches.add(match);
+		
+		return true;
 	}
 	
 	public ArrayList<Family> getPossibleMatches(Family f) {
@@ -185,6 +193,10 @@ public class FamilyMatcher {
 		this.incomeDiff = incomeDiff;
 	}
 	
+	public ArrayList<ArrayList<Family>> getMatches() {
+		return matches;
+	}
+
 	public int getIncomeDiff(){
 		return incomeDiff;
 	}
