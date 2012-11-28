@@ -1,6 +1,8 @@
 package matchingAlgorithm.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -22,16 +24,22 @@ public class ResultsPanel extends JPanel{
 	
 	public ResultsPanel(ActionListener listener){
 		super();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable, this);
+		this.add(matchingFamiliesTable, gbc);
 		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		viewInfo = new JButton("View Selected Family Info");
 		viewInfo.setActionCommand("viewInfo");
 		viewInfo.addActionListener(listener);
-		this.add(viewInfo, this);
+		this.add(viewInfo, gbc);
 	}
 	
 	public JTable getMatchingFamilies(){
@@ -68,8 +76,11 @@ public class ResultsPanel extends JPanel{
 		this.remove(matchingFamiliesTable);
 		matchingFamilies = new JTable(matchingFamiliesData, tableLabels);
 		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable, this);
+		this.add(matchingFamiliesTable, gbc);
 		
 		//display the new state of this JPanel
 		this.revalidate();

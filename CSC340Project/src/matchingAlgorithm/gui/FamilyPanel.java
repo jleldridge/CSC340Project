@@ -1,6 +1,8 @@
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -18,7 +20,9 @@ public class FamilyPanel extends JPanel {
 	
 	public FamilyPanel(ArrayList<Family> families, ActionListener listener){
 		super();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		//the family info in allFamilies
 		Object[][] allFamiliesData = new Object[families.size()][5];
@@ -44,15 +48,19 @@ public class FamilyPanel extends JPanel {
 		//System.out.println("test content worked");
 		
 		//add the table
+		gbc.gridx = 0;
+		gbc.gridy = 0;
 		allFamilies = new JTable(allFamiliesData, tableLabels);
 		allFamiliesTable = new JScrollPane(allFamilies);
-		this.add(allFamiliesTable, this);
+		this.add(allFamiliesTable, gbc);
 		
 		//add the viewInfo button
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		viewInfo = new JButton("View Selected Family Info");
 		viewInfo.setActionCommand("viewInfo");
 		viewInfo.addActionListener(listener);
-		this.add(viewInfo, this);
+		this.add(viewInfo, gbc);
 	}
 	
 	public JTable getAllFamilies(){
