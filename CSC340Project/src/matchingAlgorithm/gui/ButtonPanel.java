@@ -42,7 +42,7 @@ public class ButtonPanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		distance = new JCheckBox("Distance");
+		distance = new JCheckBox("Distance (miles)");
 		this.add(distance, c);
 		distance.addItemListener(ilistener);
 		
@@ -53,7 +53,7 @@ public class ButtonPanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 4;
-		age = new JCheckBox("Age");
+		age = new JCheckBox("Age Difference (of children)");
 		this.add(age, c);
 		age.addItemListener(ilistener);
 		
@@ -64,7 +64,7 @@ public class ButtonPanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 5;
-		income = new JCheckBox("Income");
+		income = new JCheckBox("Income Difference");
 		this.add(income, c);
 		income.addItemListener(ilistener);
 		

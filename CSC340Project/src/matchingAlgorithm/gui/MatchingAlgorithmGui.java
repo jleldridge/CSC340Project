@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
@@ -38,7 +39,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	JButton next;
 	JButton previous;
 	JButton createMatch;
-	
+
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,10 +67,11 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		createMatch.setActionCommand("createMatch");
 		createMatch.addActionListener(this);
 		createMatch.setEnabled(false);
-		
+
 		// add the next button to the window
 		this.add(previous, BorderLayout.LINE_START);
 		this.add(next, BorderLayout.LINE_END);
+		this.add(createMatch, BorderLayout.PAGE_END);
 
 		// add the button container
 		criteria = new ButtonPanel(this, this);
@@ -105,8 +107,9 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 					this.add(criteria, BorderLayout.CENTER);
 
 					// change instructions
-					instructions.setText("Select the criteria" +
-							" by which this family will be matched with other families.");
+					instructions
+							.setText("Select the criteria"
+									+ " by which this family will be matched with other families and click \"Next\".");
 
 					// repaint the JFrame
 					this.validate();
@@ -120,30 +123,57 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 
 			// advancing from showing criteria to showing matches
 			case 2:
-				if(matcher.isAge()){
-					matcher.setAgeDiff(criteria.getAgeDiff());
+				// make sure valid inputs have been given in the text boxes
+
+				if (matcher.isAge()) {
+					int x = criteria.getAgeDiff();
+					if (x <= 0) {
+						JOptionPane
+								.showMessageDialog(null,
+										"Please enter a valid value for Age Difference.");
+						currentScreen = 1;
+						break;
+					}
+					matcher.setAgeDiff(x);
 				}
-				if(matcher.isDistance()){
-					matcher.setDistanceDiff(criteria.getDistanceDiff());
+				if (matcher.isDistance()) {
+					int x = criteria.getDistanceDiff();
+					if (x <= 0) {
+						JOptionPane.showMessageDialog(null,
+								"Please enter a valid value for Distance.");
+						currentScreen = 1;
+						break;
+					}
+					matcher.setDistanceDiff(x);
 				}
-				if(matcher.isIncome()){
-					matcher.setIncomeDiff(criteria.getDistanceDiff());
+				if (matcher.isIncome()) {
+					int x = criteria.getIncomeDiff();
+					if (x <= 0) {
+						JOptionPane
+								.showMessageDialog(null,
+										"Please enter a valid value for Income Difference.");
+						currentScreen = 1;
+						break;
+					}
+					matcher.setIncomeDiff(x);
 				}
-				
+
 				resultTable.buildMatchTable(matcher
 						.getPossibleMatches(selectedFamily));
 
 				// switch to next panel
 				this.remove(criteria);
 				this.add(resultTable, BorderLayout.CENTER);
-				
-				//change the instructions
-				instructions.setText("Pick a family to match with the "
-						+ selectedFamily.getName() + " family.");
-				
-				//enable the createMatch button
+
+				// change the instructions
+				instructions
+						.setText("Pick a family to match with the "
+								+ selectedFamily.getName()
+								+ " family, then click \"Create Match\" to match the families.");
+
+				// enable the createMatch button
 				createMatch.setEnabled(true);
-				
+
 				// repaint the JFrame
 				this.validate();
 				this.repaint();
@@ -164,11 +194,14 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				// switch to previous panel
 				this.remove(resultTable);
 				this.add(criteria, BorderLayout.CENTER);
-				
+
 				// change instructions
-				instructions.setText("Select the criteria" +
-						" by which this family will be matched with other families.");
-				
+				instructions
+						.setText("Select the criteria"
+								+ " by which this family will be matched with other families and click \"Next\".");
+
+				createMatch.setEnabled(false);
+
 				// repaint the JFrame
 				this.validate();
 				this.repaint();
@@ -179,9 +212,10 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				// switch to previous panel
 				this.remove(criteria);
 				this.add(familyTable, BorderLayout.CENTER);
-				
-				//change the instructions
-				instructions.setText("Pick a family to match and click the \"Next\" button.");
+
+				// change the instructions
+				instructions
+						.setText("Pick a family to match and click the \"Next\" button.");
 
 				// repaint the JFrame
 				this.validate();
@@ -190,13 +224,16 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				break;
 			}
 		}
-		
-		//if the createMatch button is pressed
-		if(e.getActionCommand().equals("createMatch")){
-			int selectedRow = resultTable.getMatchingFamilies().getSelectedRow();
-			if(selectedRow > 0){
-				Family matchingFamily = resultTable.getMatches().get(selectedRow);
+
+		// if the createMatch button is pressed
+		if (e.getActionCommand().equals("createMatch")) {
+			int row = resultTable.getMatchingFamilies().getSelectedRow();
+			if (row > 0) {
+				Family matchingFamily = resultTable.getMatches().get(row);
 				matcher.createMatch(selectedFamily, matchingFamily);
+				JOptionPane.showMessageDialog(null,
+						"Match created between " + selectedFamily.getName()
+								+ " and " + matchingFamily.getName() + ".");
 			}
 		}
 	}
