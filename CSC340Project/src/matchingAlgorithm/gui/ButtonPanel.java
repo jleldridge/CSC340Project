@@ -105,12 +105,12 @@ public class ButtonPanel extends JPanel {
 		return income;
 	}
 	
-	public int getDistanceDiff(){
-		int x = 0;
+	public double getDistanceDiff(){
+		double x = 0.0;
 		try{
-			x = Integer.parseInt(distanceDiff.getText());
+			x = Double.parseDouble(distanceDiff.getText());
 		}catch(Exception e){
-			x = 0;
+			x = 0.0;
 		}
 		return x;
 	}

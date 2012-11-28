@@ -26,7 +26,7 @@ public class TestDriver {
 		children = new ArrayList<Child>();
 		children.add(new Child ("Sam", 13, disabilities, "male"));
 		
-		families.add(new Family("Potter", "5301 Jasper Smith Road, Browns Summit, NC; 27214", children, new Date(), "English", false));
+		families.add(new Family("Potter", "6400 Old Oak Road, Greensboro, NC; 27410", children, new Date(), "English", false));
 		families.get(2).setEthnicity("Hispanic");
 		
 		children = new ArrayList<Child>();
@@ -36,10 +36,10 @@ public class TestDriver {
 		disabilities = new ArrayList<String>();
 		disabilities.add("ADHD");
 		children.add(new Child ("Jane", 13, disabilities, "female"));
-		families.add(new Family("Garcia", "5301 Harper Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
+		families.add(new Family("Garcia", "3109 N Church St, Greensboro, NC; 27405", children, new Date(), "Spanish", false));
 		families.get(3).setEthnicity("Hispanic");
 		
-		families.add(new Family("Stark", "5301 some other Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
+		families.add(new Family("Stark", "5400 Turner Smith Road, Browns Summit, NC; 27214", children, new Date(), "Spanish", false));
 		families.get(4).setEthnicity("Asian");
 		
 		

@@ -15,7 +15,8 @@ public class FamilyMatcher {
 	//flags for checking which criteria to consider when matching
 	private boolean ethnicity, language, disability, distance, age, income;
 	//values to consider if matching by distance, age, or income
-	private int distanceDiff=0, ageDiff=0, incomeDiff=0;
+	private int ageDiff=0, incomeDiff=0;
+	private double distanceDiff=0;
 	
 	public FamilyMatcher(ArrayList<Family> families) {
 		this.families = families;
@@ -142,7 +143,17 @@ public class FamilyMatcher {
 		if (distance) {
 			Iterator<Family> iter = possibleMatches.iterator();
 			while(iter.hasNext()){
-				//TODO: not implemented yet
+				Family pf = iter.next();
+				double distance;
+				String origin = f.getAddress().replace(' ', '+');
+				String destination = pf.getAddress().replace(' ', '+');
+				String distanceStr = Distance.getDistance(origin, destination);
+				distanceStr = distanceStr.replaceAll("[^\\d.]", "");
+				
+				distance = Double.parseDouble(distanceStr);
+				if(distance > distanceDiff){
+					iter.remove();
+				}
 			}
 		}
 
@@ -214,11 +225,11 @@ public class FamilyMatcher {
 		return incomeDiff;
 	}
 
-	public int getDistanceDiff() {
+	public double getDistanceDiff() {
 		return distanceDiff;
 	}
 
-	public void setDistanceDiff(int distanceDiff) {
+	public void setDistanceDiff(double distanceDiff) {
 		this.distanceDiff = distanceDiff;
 	}
 

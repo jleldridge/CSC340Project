@@ -149,8 +149,8 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 					matcher.setAgeDiff(x);
 				}
 				if (matcher.isDistance()) {
-					int x = criteria.getDistanceDiff();
-					if (x <= 0) {
+					double x = criteria.getDistanceDiff();
+					if (x <= 0.0) {
 						JOptionPane.showMessageDialog(this,
 								"Please enter a valid value for Distance.");
 						currentScreen = 1;
