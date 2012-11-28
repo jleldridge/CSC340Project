@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -17,7 +18,6 @@ import matchingAlgorithm.Family;
 
 public class ResultsPanel extends JPanel{
 	JTable matchingFamilies;
-	JButton viewInfo;
 	ArrayList<Family> matches;
 	JScrollPane matchingFamiliesTable;
 	String[] tableLabels = {"Name", "Address", "Language", "Ethnicity", "Children"};
@@ -25,21 +25,11 @@ public class ResultsPanel extends JPanel{
 	public ResultsPanel(ActionListener listener){
 		super();
 		
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
+		this.setLayout(new GridLayout(1, 1));
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
 		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
-		this.add(matchingFamiliesTable, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		viewInfo = new JButton("View Selected Family Info");
-		viewInfo.setActionCommand("viewInfo");
-		viewInfo.addActionListener(listener);
-		this.add(viewInfo, gbc);
+		this.add(matchingFamiliesTable);
 	}
 	
 	public JTable getMatchingFamilies(){

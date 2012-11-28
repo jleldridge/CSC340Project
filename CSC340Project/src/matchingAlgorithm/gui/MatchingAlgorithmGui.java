@@ -1,16 +1,19 @@
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyMatcher;
@@ -39,6 +42,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	JButton next;
 	JButton previous;
 	JButton createMatch;
+	JButton viewInfo;
 
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
@@ -67,11 +71,19 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		createMatch.setActionCommand("createMatch");
 		createMatch.addActionListener(this);
 		createMatch.setEnabled(false);
-
+		viewInfo = new JButton("View Selected Family Info");
+		viewInfo.setActionCommand("viewInfo");
+		viewInfo.addActionListener(this);
+		
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new GridLayout(1, 4));
+		
 		// add the next button to the window
-		this.add(previous, BorderLayout.LINE_START);
-		this.add(next, BorderLayout.LINE_END);
-		this.add(createMatch, BorderLayout.PAGE_END);
+		buttons.add(previous);
+		buttons.add(createMatch);
+		buttons.add(viewInfo);
+		buttons.add(next);
+		this.add(buttons, BorderLayout.PAGE_END);
 
 		// add the button container
 		criteria = new ButtonPanel(this, this);
