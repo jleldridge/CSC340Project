@@ -97,4 +97,28 @@ public class Family {
 		return matched;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Name: " + name + "\n");
+		sb.append("Address: " + address + "\n");
+		sb.append("Date Joined: " + dateJoined + "\n");
+		sb.append("Language: " + language + "\n");
+		sb.append("Ethnicity: " + ethnicity + "\n");
+		sb.append("Income: " + income + "\n");
+		sb.append("Children: " + "\n");
+		for(Child c : children){
+			sb.append("     Name: " + c.getName() + "\n");
+			sb.append("     Age: " + c.getAge() + "\n");
+			sb.append("     Gender: " + c.getGender() + "\n");
+			sb.append("     Disabilities: ");
+			for(int i = 0; i < c.getDisabilities().size()-1; i++){
+				sb.append(c.getDisabilities().get(i) + ", ");
+			}
+			sb.append(c.getDisabilities().get(c.getDisabilities().size()-1) + "\n\n");
+		}
+		return sb.toString();
+	}
+	
 }

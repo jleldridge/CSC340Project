@@ -54,4 +54,20 @@ public class Child {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Name: " + name + "\n");
+		sb.append("Age: " + age + "\n");
+		sb.append("Gender: " + gender + "\n");
+		sb.append("Disabilities: ");
+		for(int i = 0; i < disabilities.size()-1; i++){
+			sb.append(disabilities.get(i) + ", ");
+		}
+		sb.append(disabilities.get(disabilities.size()-1));
+		
+		return sb.toString();
+	}
 }

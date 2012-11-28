@@ -1,9 +1,11 @@
 package matchingAlgorithm.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,18 +15,23 @@ import matchingAlgorithm.Family;
 
 public class ResultsPanel extends JPanel{
 	JTable matchingFamilies;
+	JButton viewInfo;
 	ArrayList<Family> matches;
 	JScrollPane matchingFamiliesTable;
 	String[] tableLabels = {"Name", "Address", "Language", "Ethnicity", "Children"};
 	
-	public ResultsPanel(){
+	public ResultsPanel(ActionListener listener){
 		super();
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		matchingFamilies = new JTable();
 		matchingFamiliesTable = new JScrollPane(matchingFamilies);
 		this.add(matchingFamiliesTable, this);
 		
+		viewInfo = new JButton("View Selected Family Info");
+		viewInfo.setActionCommand("viewInfo");
+		viewInfo.addActionListener(listener);
+		this.add(viewInfo, this);
 	}
 	
 	public JTable getMatchingFamilies(){

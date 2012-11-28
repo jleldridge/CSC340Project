@@ -53,7 +53,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		this.add(instructions, BorderLayout.NORTH);
 
 		// add the table container
-		familyTable = new FamilyPanel(families);
+		familyTable = new FamilyPanel(families, this);
 		this.add(familyTable, BorderLayout.CENTER);
 
 		// initialize the next and previous buttons
@@ -81,7 +81,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		matcher = new FamilyMatcher(families);
 
 		// initialize the result table
-		resultTable = new ResultsPanel();
+		resultTable = new ResultsPanel(this);
 		setSize(800, 600);
 		this.setVisible(true);
 	}
@@ -228,12 +228,23 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		// if the createMatch button is pressed
 		if (e.getActionCommand().equals("createMatch")) {
 			int row = resultTable.getMatchingFamilies().getSelectedRow();
-			if (row > 0) {
+			if (row >= 0) {
 				Family matchingFamily = resultTable.getMatches().get(row);
 				matcher.createMatch(selectedFamily, matchingFamily);
 				JOptionPane.showMessageDialog(null,
 						"Match created between " + selectedFamily.getName()
 								+ " and " + matchingFamily.getName() + ".");
+			}
+		}
+		
+		//if the viewInfo button is pushed
+		if(e.getActionCommand().equals("viewInfo")){
+			if(currentScreen == 0){
+				int row = familyTable.getAllFamilies().getSelectedRow();
+				if(row >= 0){
+					Family displayFamily =  matcher.getFamilies().get(row);
+					JOptionPane.showMessageDialog(null, displayFamily.toString());
+				}
 			}
 		}
 	}

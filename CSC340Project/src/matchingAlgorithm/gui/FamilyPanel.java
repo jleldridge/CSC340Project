@@ -1,6 +1,7 @@
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -10,12 +11,14 @@ import matchingAlgorithm.Family;
 
 public class FamilyPanel extends JPanel {
 	JTable allFamilies;
-	JTable matchingFamilies;
+	JScrollPane allFamiliesTable;
+	JButton viewInfo;
 	String[] tableLabels = {"Name", "Address", "Language", "Ethnicity", "Children"};
 	
-	public FamilyPanel(ArrayList<Family> families){
+	
+	public FamilyPanel(ArrayList<Family> families, ActionListener listener){
 		super();
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		//the family info in allFamilies
 		Object[][] allFamiliesData = new Object[families.size()][5];
@@ -40,9 +43,16 @@ public class FamilyPanel extends JPanel {
 		
 		//System.out.println("test content worked");
 		
+		//add the table
 		allFamilies = new JTable(allFamiliesData, tableLabels);
-		JScrollPane allFamiliesTable = new JScrollPane(allFamilies);
+		allFamiliesTable = new JScrollPane(allFamilies);
 		this.add(allFamiliesTable, this);
+		
+		//add the viewInfo button
+		viewInfo = new JButton("View Selected Family Info");
+		viewInfo.setActionCommand("viewInfo");
+		viewInfo.addActionListener(listener);
+		this.add(viewInfo, this);
 	}
 	
 	public JTable getAllFamilies(){
