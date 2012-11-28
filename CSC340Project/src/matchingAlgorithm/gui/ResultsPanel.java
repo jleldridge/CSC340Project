@@ -13,6 +13,7 @@ import matchingAlgorithm.Family;
 
 public class ResultsPanel extends JPanel{
 	JTable matchingFamilies;
+	ArrayList<Family> matches;
 	JScrollPane matchingFamiliesTable;
 	String[] tableLabels = {"Name", "Address", "Language", "Ethnicity", "Children"};
 	
@@ -30,7 +31,12 @@ public class ResultsPanel extends JPanel{
 		return matchingFamilies;
 	}
 	
+	public ArrayList<Family> getMatches(){
+		return matches;
+	}
+	
 	public void buildMatchTable(ArrayList<Family> matches){
+		this.matches = matches;
 		Object[][] matchingFamiliesData = new Object[matches.size()][5];
 		for(int i = 0; i < matches.size(); i++){
 			Family f = matches.get(i);

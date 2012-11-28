@@ -7,7 +7,11 @@ public class FamilyMatcher {
 	// when narrowing down matches, do the faster criteria checks first,
 	// so that we're doing the fast operations on larger data sets and the
 	// slow operations on smaller data sets
+	
+	//collection to hold all families
 	private ArrayList<Family> families;
+	//collection to hold all current matches between families
+	private ArrayList<ArrayList<Family>> matches;
 	//flags for checking which criteria to consider when matching
 	private boolean ethnicity, language, disability, distance, age, income;
 	//values to consider if matching by distance, age, or income
@@ -15,8 +19,16 @@ public class FamilyMatcher {
 	
 	public FamilyMatcher(ArrayList<Family> families) {
 		this.families = families;
+		matches = new ArrayList<ArrayList<Family>>();
 	}
-
+	
+	public void createMatch(Family f1, Family f2){
+		ArrayList<Family> match = new ArrayList<Family>();
+		match.add(f1);
+		match.add(f2);
+		matches.add(match);
+	}
+	
 	public ArrayList<Family> getPossibleMatches(Family f) {
 		// add all families to the possible matches to start
 		ArrayList<Family> possibleMatches = new ArrayList<>(families);

@@ -37,6 +37,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	JLabel instructions;
 	JButton next;
 	JButton previous;
+	JButton createMatch;
 	
 	public MatchingAlgorithmGui(ArrayList<Family> families) {
 		super("Family Matcher");
@@ -61,7 +62,11 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		previous = new JButton("Previous");
 		previous.setActionCommand("previous");
 		previous.addActionListener(this);
-
+		createMatch = new JButton("Create Match");
+		createMatch.setActionCommand("createMatch");
+		createMatch.addActionListener(this);
+		createMatch.setEnabled(false);
+		
 		// add the next button to the window
 		this.add(previous, BorderLayout.LINE_START);
 		this.add(next, BorderLayout.LINE_END);
@@ -135,7 +140,10 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				//change the instructions
 				instructions.setText("Pick a family to match with the "
 						+ selectedFamily.getName() + " family.");
-
+				
+				//enable the createMatch button
+				createMatch.setEnabled(true);
+				
 				// repaint the JFrame
 				this.validate();
 				this.repaint();
@@ -180,6 +188,15 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				this.repaint();
 
 				break;
+			}
+		}
+		
+		//if the createMatch button is pressed
+		if(e.getActionCommand().equals("createMatch")){
+			int selectedRow = resultTable.getMatchingFamilies().getSelectedRow();
+			if(selectedRow > 0){
+				Family matchingFamily = resultTable.getMatches().get(selectedRow);
+				matcher.createMatch(selectedFamily, matchingFamily);
 			}
 		}
 	}
