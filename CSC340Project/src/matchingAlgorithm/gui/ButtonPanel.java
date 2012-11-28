@@ -1,11 +1,14 @@
 package matchingAlgorithm.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,60 +21,64 @@ public class ButtonPanel extends JPanel {
 		super();
 		
 		//this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setLayout(new GridBagLayout());
+		//this.setLayout(new GridBagLayout());
+		this.setLayout(new GridLayout(6, 1));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
 		c.gridy = 0;
 		ethnicity = new JCheckBox("Ethnicity");
-		this.add(ethnicity, c);
+		this.add(ethnicity);
 		ethnicity.addItemListener(ilistener);
 		
 		c.gridx = 0;
 		c.gridy = 1;
 		language = new JCheckBox("Language");
-		this.add(language, c);
+		this.add(language);
 		language.addItemListener(ilistener);
 		
 		c.gridx = 0;
 		c.gridy = 2;
 		disability = new JCheckBox("Disability");
-		this.add(disability, c);
+		this.add(disability);
 		disability.addItemListener(ilistener);
 		
 		c.gridx = 0;
 		c.gridy = 3;
+		JPanel distancePanel = new JPanel();
 		distance = new JCheckBox("Distance (miles)");
-		this.add(distance, c);
+		distancePanel.add(distance);
 		distance.addItemListener(ilistener);
-		
 		c.gridx = 1;
 		distanceDiff = new JTextField();
 		distanceDiff.setPreferredSize(new Dimension(150, 20));
-		this.add(distanceDiff, c);
+		distancePanel.add(distanceDiff);
+		this.add(distancePanel);
 		
 		c.gridx = 0;
 		c.gridy = 4;
+		JPanel agePanel = new JPanel();
 		age = new JCheckBox("Age Difference (of children)");
-		this.add(age, c);
+		agePanel.add(age);
 		age.addItemListener(ilistener);
-		
 		c.gridx = 1;
 		ageDiff = new JTextField();
 		ageDiff.setPreferredSize(new Dimension(150, 20));
-		this.add(ageDiff, c);
+		agePanel.add(ageDiff);
+		this.add(agePanel);
 		
+		JPanel incomePanel = new JPanel();
 		c.gridx = 0;
 		c.gridy = 5;
 		income = new JCheckBox("Income Difference");
-		this.add(income, c);
+		incomePanel.add(income);
 		income.addItemListener(ilistener);
-		
 		c.gridx = 1;
 		incomeDiff = new JTextField();
 		incomeDiff.setPreferredSize(new Dimension(150, 20));
-		this.add(incomeDiff, c);
+		incomePanel.add(incomeDiff);
+		this.add(incomePanel);
 	}
 
 	public JCheckBox getEthnicity() {

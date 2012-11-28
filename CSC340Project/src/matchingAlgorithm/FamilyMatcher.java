@@ -37,6 +37,19 @@ public class FamilyMatcher {
 		return true;
 	}
 	
+	public boolean breakMatch(Family f){
+		
+		Iterator<ArrayList<Family>> iter = matches.iterator();
+		while(iter.hasNext()){
+			ArrayList<Family> arr = iter.next();
+			if(arr.contains(f)){
+				iter.remove();
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public ArrayList<Family> getPossibleMatches(Family f) {
 		// add all families to the possible matches to start
 		ArrayList<Family> possibleMatches = new ArrayList<>(families);

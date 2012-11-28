@@ -141,7 +141,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 					int x = criteria.getAgeDiff();
 					if (x <= 0) {
 						JOptionPane
-								.showMessageDialog(null,
+								.showMessageDialog(this,
 										"Please enter a valid value for Age Difference.");
 						currentScreen = 1;
 						break;
@@ -151,7 +151,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				if (matcher.isDistance()) {
 					int x = criteria.getDistanceDiff();
 					if (x <= 0) {
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(this,
 								"Please enter a valid value for Distance.");
 						currentScreen = 1;
 						break;
@@ -162,7 +162,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 					int x = criteria.getIncomeDiff();
 					if (x <= 0) {
 						JOptionPane
-								.showMessageDialog(null,
+								.showMessageDialog(this,
 										"Please enter a valid value for Income Difference.");
 						currentScreen = 1;
 						break;
@@ -245,12 +245,12 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 				boolean matchWorked = matcher.createMatch(selectedFamily, matchingFamily);
 				
 				if(matchWorked){
-					JOptionPane.showMessageDialog(null,
+					JOptionPane.showMessageDialog(this,
 						"Match created between " + selectedFamily.getName()
 								+ " and " + matchingFamily.getName() + ".");
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Error: One of these families is already matched.");
+					JOptionPane.showMessageDialog(this, "Error: One of these families is already matched.");
 				}
 			}
 		}
@@ -274,8 +274,14 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 						}
 					}
 					
-					JOptionPane.showMessageDialog(null, displayFamily.toString() + "\n" +
-														"Matched Family: " + match);
+					int decision = JOptionPane.showConfirmDialog(this, displayFamily.toString() + "\n" +
+														"Matched Family: " + match + "\n\n" +
+														"Break this family's current match?");
+					
+					//if they chose to break the family's match, break it.
+					if(decision == JOptionPane.YES_OPTION){
+						matcher.breakMatch(displayFamily);
+					}
 				}
 			}
 			
@@ -296,8 +302,13 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 						}
 					}
 					
-					JOptionPane.showMessageDialog(null, displayFamily.toString() + "\n" +
-														"Matched Family: " + match);
+					int decision = JOptionPane.showConfirmDialog(this, displayFamily.toString() + "\n" +
+							"Matched Family: " + match + "\n\n" +
+							"Break this family's current match?");
+					//if they chose to break the family's match, break it.
+					if(decision == JOptionPane.YES_OPTION){
+						matcher.breakMatch(displayFamily);
+					}
 				}
 			}
 		}
