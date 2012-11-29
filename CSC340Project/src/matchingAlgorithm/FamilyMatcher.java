@@ -1,3 +1,12 @@
+/**
+ * FamilyMatcher.java
+ * Purpose: Maintains lists of Families and matched Families,
+ * 			filters possible matches for families, and creates
+ * 			and destroys matches between Families.
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
 package matchingAlgorithm;
 
 import java.util.ArrayList;

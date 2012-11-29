@@ -1,3 +1,16 @@
+/**
+ * MatchingAlgorithmGui.java
+ * Purpose: Displays family data in tables and 
+ * 			allows for the creation and
+ * 			destruction of matches between the
+ * 			families based on user input.
+ * 			
+ * 			
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ * 
+ */
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;
@@ -46,7 +59,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 
 	public MatchingAlgorithmGui() {
 		super("Family Matcher");
-		
+
 		ArrayList<Family> families = new ArrayList<Family>();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -76,10 +89,10 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		viewInfo = new JButton("View Selected Family Info");
 		viewInfo.setActionCommand("viewInfo");
 		viewInfo.addActionListener(this);
-		
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(1, 4));
-		
+
 		// add the next button to the window
 		buttons.add(previous);
 		buttons.add(createMatch);
@@ -244,71 +257,74 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 			int row = resultTable.getMatchingFamilies().getSelectedRow();
 			if (row >= 0) {
 				Family matchingFamily = resultTable.getMatches().get(row);
-				boolean matchWorked = matcher.createMatch(selectedFamily, matchingFamily);
-				
-				if(matchWorked){
+				boolean matchWorked = matcher.createMatch(selectedFamily,
+						matchingFamily);
+
+				if (matchWorked) {
 					JOptionPane.showMessageDialog(this,
-						"Match created between " + selectedFamily.getName()
-								+ " and " + matchingFamily.getName() + ".");
-				}
-				else{
-					JOptionPane.showMessageDialog(this, "Error: One of these families is already matched.");
+							"Match created between " + selectedFamily.getName()
+									+ " and " + matchingFamily.getName() + ".");
+				} else {
+					JOptionPane.showMessageDialog(this,
+							"Error: One of these families is already matched.");
 				}
 			}
 		}
-		
-		//if the viewInfo button is pushed
-		if(e.getActionCommand().equals("viewInfo")){
-			if(currentScreen == 0){
+
+		// if the viewInfo button is pushed
+		if (e.getActionCommand().equals("viewInfo")) {
+			if (currentScreen == 0) {
 				int row = familyTable.getAllFamilies().getSelectedRow();
-				if(row >= 0){
-					Family displayFamily =  matcher.getFamilies().get(row);
-					
+				if (row >= 0) {
+					Family displayFamily = matcher.getFamilies().get(row);
+
 					String match = "none";
 					ArrayList<ArrayList<Family>> matches = matcher.getMatches();
-					for(ArrayList<Family> arr : matches){
-						if(arr.contains(displayFamily)){
-							for(Family f : arr){
-								if(!f.equals(displayFamily)){
+					for (ArrayList<Family> arr : matches) {
+						if (arr.contains(displayFamily)) {
+							for (Family f : arr) {
+								if (!f.equals(displayFamily)) {
 									match = f.getName();
 								}
 							}
 						}
 					}
-					
-					int decision = JOptionPane.showConfirmDialog(this, displayFamily.toString() + "\n" +
-														"Matched Family: " + match + "\n\n" +
-														"Break this family's current match?");
-					
-					//if they chose to break the family's match, break it.
-					if(decision == JOptionPane.YES_OPTION){
+
+					int decision = JOptionPane.showConfirmDialog(this,
+							displayFamily.toString() + "\n"
+									+ "Matched Family: " + match + "\n\n"
+									+ "Break this family's current match?");
+
+					// if they chose to break the family's match, break it.
+					if (decision == JOptionPane.YES_OPTION) {
 						matcher.breakMatch(displayFamily);
 					}
 				}
 			}
-			
-			if(currentScreen == 2){
+
+			if (currentScreen == 2) {
 				int row = resultTable.getMatchingFamilies().getSelectedRow();
-				if(row >= 0){
-					Family displayFamily =  resultTable.getMatches().get(row);
-					
+				if (row >= 0) {
+					Family displayFamily = resultTable.getMatches().get(row);
+
 					String match = "none";
 					ArrayList<ArrayList<Family>> matches = matcher.getMatches();
-					for(ArrayList<Family> arr : matches){
-						if(arr.contains(displayFamily)){
-							for(Family f : arr){
-								if(!f.equals(displayFamily)){
+					for (ArrayList<Family> arr : matches) {
+						if (arr.contains(displayFamily)) {
+							for (Family f : arr) {
+								if (!f.equals(displayFamily)) {
 									match = f.getName();
 								}
 							}
 						}
 					}
-					
-					int decision = JOptionPane.showConfirmDialog(this, displayFamily.toString() + "\n" +
-							"Matched Family: " + match + "\n\n" +
-							"Break this family's current match?");
-					//if they chose to break the family's match, break it.
-					if(decision == JOptionPane.YES_OPTION){
+
+					int decision = JOptionPane.showConfirmDialog(this,
+							displayFamily.toString() + "\n"
+									+ "Matched Family: " + match + "\n\n"
+									+ "Break this family's current match?");
+					// if they chose to break the family's match, break it.
+					if (decision == JOptionPane.YES_OPTION) {
 						matcher.breakMatch(displayFamily);
 					}
 				}

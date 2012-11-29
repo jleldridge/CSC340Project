@@ -1,3 +1,10 @@
+/**
+ * Child.java
+ * Purpose: To hold data representing each Child in a Family class
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
 package matchingAlgorithm;
 
 import java.util.ArrayList;

@@ -1,3 +1,12 @@
+/**
+ * Family.java
+ * Purpose: Holds information pertaining to a Family and
+ * 			the children in that family.
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
+
 package matchingAlgorithm;
 
 import java.util.ArrayList;
@@ -16,7 +25,7 @@ public class Family {
 	//to check if the family is already matched
 	private boolean matched;
 	
-	public Family(String name, String address, ArrayList<Child> children, Date dateJoined, String language, boolean matched){
+	public Family(String name, String address, ArrayList<Child> children, String language, boolean matched){
 		this.name = name;
 		this.address = address;
 		this.children = children;
