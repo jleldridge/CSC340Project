@@ -1,3 +1,11 @@
+/**
+ * FamilyPanel.java
+ * Purpose: Holds the table of families to choose matches
+ * 			for.
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;

@@ -1,3 +1,12 @@
+/**
+ * ButtonPanel.java
+ * Purpose: ButtonPanel holds the gui components for selecting criteria
+ * 			to match families.
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
+
 package matchingAlgorithm.gui;
 
 import java.awt.BorderLayout;

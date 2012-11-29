@@ -1,14 +1,17 @@
+/**
+ * ResultsPanel.java
+ * Purpose: Holds the table of families that match the
+ * 			selected family based on the selected criteria.
+ * 
+ * @author Jeffrey Eldridge
+ * @version 1.0 11/28/2012
+ */
 package matchingAlgorithm.gui;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

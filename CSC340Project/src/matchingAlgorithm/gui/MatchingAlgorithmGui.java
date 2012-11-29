@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -29,13 +30,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import matchingAlgorithm.Family;
+import matchingAlgorithm.FamilyBuilder;
 import matchingAlgorithm.FamilyMatcher;
 
 public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		ItemListener {
-	// plain java objects
+	
 	FamilyMatcher matcher;
-
+	FamilyBuilder builder;
+	
 	// the currently selected family
 	Family selectedFamily;
 	// index of the currently selected family in the table
@@ -60,7 +63,16 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	public MatchingAlgorithmGui() {
 		super("Family Matcher");
 
-		ArrayList<Family> families = new ArrayList<Family>();
+		ArrayList<Family> families;
+		builder = null;
+		try {
+			builder = new FamilyBuilder();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		families = builder.getFamilies();
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// set currentScreen to 0 and build the first screen

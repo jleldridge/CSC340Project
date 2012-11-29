@@ -1,3 +1,11 @@
+/**
+ * Distance.java
+ * Purpose: Computes the distance between two addresses.
+ * 
+ * @author Kyle Lecher
+ * @version 1.0 11/28/2012
+ */
+
 package matchingAlgorithm;
 
 import java.io.BufferedReader;
