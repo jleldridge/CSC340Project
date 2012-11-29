@@ -22,42 +22,72 @@ public class Child {
 		this.gender = gender;
 	}
 	
+	/**
+	 * @param d
+	 */
 	public void addDisability(String d){
 		disabilities.add(d);
 	}
 	
+	/**
+	 * @param d
+	 */
 	public void removeDisability(String d){
 		disabilities.remove(d);
 	}
 
+	/**
+	 * @return
+	 */
 	public int getAge() {
 		return age;
 	}
 
+	/**
+	 * @param age
+	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<String> getDisabilities() {
 		return disabilities;
 	}
 
+	/**
+	 * @param disabilities
+	 */
 	public void setDisabilities(ArrayList<String> disabilities) {
 		this.disabilities = disabilities;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getGender() {
 		return gender;
 	}
 
+	/**
+	 * @param gender
+	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
