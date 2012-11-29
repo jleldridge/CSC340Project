@@ -35,16 +35,16 @@ public class FamilyBuilder {
         	
         //while there is another row in the database, build a family object from the data
         while(results.next()){
-        	// starting column is 34
-        	String name = results.getString(34);
+        	// starting column is 5
+        	String name = results.getString(5);
         	// Create address string
         	String address;
         	StringBuilder sb = new StringBuilder();
-        	sb.append(results.getString(35) + " ");
-        	sb.append(results.getString(36) + " ");
-        	sb.append(results.getString(37) + " ");
-        	sb.append(results.getString(38) + " ");
-        	sb.append(results.getString(39) + " ");
+        	sb.append(results.getString(7) + " ");
+        	sb.append(results.getString(8) + " ");
+        	sb.append(results.getString(9) + " ");
+        	sb.append(results.getString(10) + " ");
+        	//sb.append(results.getString(39) + " ");
         	address = sb.toString();
         	
         	// Create a list of children
@@ -53,24 +53,26 @@ public class FamilyBuilder {
         	ArrayList<String> disa1 = new ArrayList();
         	ArrayList<String> disa2 = new ArrayList();
         	// build first child object
-        	disa1.add(results.getString(48));
-         	Child child1 = new Child(results.getString(45), 
-        			results.getInt(46), 
+        	disa1.add(results.getString(22));
+         	Child child1 = new Child(results.getString(18), 
+        			results.getInt(19), 
         			disa1, 
-        			results.getString(49));
+        			results.getString(20));
         	
          	// build second child object
+         	/*
          	disa2.add(results.getString(54));
          	Child child2 = new Child(results.getString(51), 
         			results.getInt(52), 
         			disa2, 
         			results.getString(55));
          	// build children list
+         	 */
          	Children.add(child1); 
-         	Children.add(child2);
+         	//Children.add(child2);
         	
          	// needs to be put in database
-        	String language = "";
+        	String language = results.getString(6);
         	boolean matched = false;
         	
         	
