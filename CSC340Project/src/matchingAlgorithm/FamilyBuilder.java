@@ -15,15 +15,16 @@ public class FamilyBuilder {
     private ArrayList<Family> families;
     //Holds the results from the database
     private ResultSet results;
-    
+    private ArrayList<ArrayList<Family>> currMatches;
     
     public FamilyBuilder() throws SQLException{
+    	currMatches = new ArrayList<ArrayList<Family>>();
     	// Database information to connect, and query
     	// query pulls all information from the database.
     	String query = "Select * From NAME_OF_DATABASE_";
-        String url = "//localhost:3306/NAME_OF_DATABASE";
-        String  username ="root";
-        String password = "user0613";
+    	String url = "jdbc:mysql://instance26220.db.xeround.com:17200/familiesdb";
+        String  username ="judge";
+        String password = "csc471";
         
         // establish connection with database
         Connection c = DriverManager.getConnection(url,username, password);
@@ -76,27 +77,67 @@ public class FamilyBuilder {
         	family.setZip(zip);
         	family.setCounty(county);
         	
+        	String match = results.getString(47);
+        	family.setMatch(match);
+        	
         	families.add(family);
+        }
+        
+        for(Family f : families){
+        	String match = f.getMatch();
+        	if(match.equals("")){
+        		continue;
+        	}
+        	Scanner strScan = new Scanner(match);
+        	String matchName = strScan.next();
+        	String matchAddress = strScan.nextLine();
+        	
+        	for(Family m : families){
+        		if(m.getName().equals(matchName) && m.getAddress().equals(matchAddress)){
+        			ArrayList<Family> currMatch = new ArrayList<Family>();
+        			currMatch.add(f);
+        			currMatch.add(m);
+        			currMatches.add(currMatch);
+        			break;
+        		}
+        	}
         }
         c.close();        
     }
     
+    
     public void updateMatches(ArrayList<ArrayList<Family>> matches) throws SQLException{
-    	String url = "//localhost:3306/NAME_OF_DATABASE";
-        String  username ="root";
-        String password = "user0613";
+    	String url = "jdbc:mysql://instance26220.db.xeround.com:17200/familiesdb";
+        String  username ="judge";
+        String password = "csc471";
         
     	 // establish connection with database
         Connection c = DriverManager.getConnection(url,username, password);
         
-        for(ArrayList<Family> match : matches){
-        	for(Family f : match){
-        		Scanner strScan = new Scanner(f.getAddress());
-        		
-        		//put database query here searching for f in the database
-        		//based on their last name and address
-        		String query = "Select ";
-        	}
+        for(ArrayList<Family> match : matches){		
+        	//put database query here searching for f in the database
+        	//based on their last name and address
+        	Family firstFamily = match.get(0);
+        	Family secondFamily = match.get(1);
+        	//change first family
+        	String query = "update familyContact set matchedFamily = '" +
+        					secondFamily.getName() + " " + secondFamily.getAddress() + "' " +
+        					"where conLastName = '" + firstFamily.getName() + "' and street = '" +
+        					firstFamily.getStreet() + "' and city = '" + firstFamily.getCity() +
+        					"' and zip = '" + firstFamily.getZip() + "' and county = '" +
+        					firstFamily.getCounty() + "'";
+        	Statement statement = c.createStatement();
+        	statement.executeQuery(query);
+        	
+        	
+        	//change second family
+        	query = "update familyContact set matchedFamily = '" +
+					firstFamily.getName() + " " + firstFamily.getAddress() + "' " +
+					"where conLastName = '" + secondFamily.getName() + "' and street = '" +
+					secondFamily.getStreet() + "' and city = '" + secondFamily.getCity() +
+					"' and zip = '" + secondFamily.getZip() + "' and county = '" +
+					secondFamily.getCounty() + "'";
+        	statement.executeQuery(query);
         }
         c.close();
     }
@@ -107,6 +148,10 @@ public class FamilyBuilder {
      */
     public ArrayList<Family> getFamilies(){
         return families;
+    }
+    
+    public ArrayList<ArrayList<Family>> getCurrMatches(){
+    	return currMatches;
     }
 }
     

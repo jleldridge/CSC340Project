@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+//import me.somedirectory.javagui;
 
 import matchingAlgorithm.Family;
 import matchingAlgorithm.FamilyBuilder;
@@ -59,11 +60,13 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 	JButton previous;
 	JButton createMatch;
 	JButton viewInfo;
+	JButton finish;
 
 	public MatchingAlgorithmGui() {
 		super("Family Matcher");
 
 		ArrayList<Family> families;
+		ArrayList<ArrayList<Family>> matches;
 		builder = null;
 		try {
 			builder = new FamilyBuilder();
@@ -72,6 +75,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		}
 		
 		families = builder.getFamilies();
+		matches = builder.getCurrMatches();
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -101,6 +105,9 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		viewInfo = new JButton("View Selected Family Info");
 		viewInfo.setActionCommand("viewInfo");
 		viewInfo.addActionListener(this);
+		finish = new JButton("Finish");
+		finish.setActionCommand("finish");
+		finish.addActionListener(this);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(1, 4));
@@ -110,6 +117,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		buttons.add(createMatch);
 		buttons.add(viewInfo);
 		buttons.add(next);
+		buttons.add(finish);
 		this.add(buttons, BorderLayout.PAGE_END);
 
 		// add the button container
@@ -117,7 +125,7 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 		// this.add(criteria, BorderLayout.EAST);
 
 		// initialize the FamilyMatcher
-		matcher = new FamilyMatcher(families);
+		matcher = new FamilyMatcher(families, matches);
 
 		// initialize the result table
 		resultTable = new ResultsPanel(this);
@@ -127,6 +135,19 @@ public class MatchingAlgorithmGui extends JFrame implements ActionListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//if the "Finish" button is pushed
+		if(e.getActionCommand().equals("finish")){
+			try{
+				builder.updateMatches(matcher.getMatches());
+				this.dispose();
+				
+				//call main menu window
+				//new FirstWindow_Frame();
+			}catch(Exception exc){
+				JOptionPane.showMessageDialog(this, "Failed to update database, there may be a problem" +
+														" with the database connection.");
+			}
+		}
 		// if the "Next" button is pushed
 		if (e.getActionCommand().equals("next")) {
 			if (currentScreen < 2) {

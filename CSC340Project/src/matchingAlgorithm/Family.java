@@ -26,7 +26,8 @@ public class Family {
 	private String language;
 	private String ethnicity;
 	private String income;
-	
+	private String match;
+
 	public Family(String name, String address, ArrayList<Child> children, String language){
 		this.name = name;
 		this.address = address;
@@ -129,6 +130,14 @@ public class Family {
 
 	public void setCounty(String county) {
 		this.county = county;
+	}
+	
+	public String getMatch() {
+		return match;
+	}
+
+	public void setMatch(String match) {
+		this.match = match;
 	}
 	
 	@Override

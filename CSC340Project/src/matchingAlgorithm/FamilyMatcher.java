@@ -27,9 +27,9 @@ public class FamilyMatcher {
 	private int ageDiff=0, incomeDiff=0;
 	private double distanceDiff=0;
 	
-	public FamilyMatcher(ArrayList<Family> families) {
+	public FamilyMatcher(ArrayList<Family> families, ArrayList<ArrayList<Family>> matches) {
 		this.families = families;
-		matches = new ArrayList<ArrayList<Family>>();
+		this.matches = matches;
 	}
 	
 	public boolean createMatch(Family f1, Family f2){
