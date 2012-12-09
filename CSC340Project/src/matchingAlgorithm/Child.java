@@ -7,61 +7,51 @@
  */
 package matchingAlgorithm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Child {
 	private String name;
-	private int age;
-	private ArrayList<String> disabilities;
+	private String dateOfBirth;
+	private String disability;
 	private String gender;
 	
-	public Child(String name, int age, ArrayList<String> disabilities, String gender){
+	public Child(String name, String dateOfBirth, String disability, String gender){
 		this.name = name;
-		this.age = age;
-		this.disabilities = disabilities;
+		this.dateOfBirth = dateOfBirth;
+		this.disability = disability;
 		this.gender = gender;
 	}
 	
 	/**
 	 * @param d
 	 */
-	public void addDisability(String d){
-		disabilities.add(d);
-	}
-	
-	/**
-	 * @param d
-	 */
-	public void removeDisability(String d){
-		disabilities.remove(d);
+	public void setDisability(String d){
+		this.disability = d;
 	}
 
 	/**
 	 * @return
 	 */
-	public int getAge() {
-		return age;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
 	/**
 	 * @param age
 	 */
-	public void setAge(int age) {
-		this.age = age;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	/**
 	 * @return
 	 */
-	public ArrayList<String> getDisabilities() {
-		return disabilities;
-	}
-
-	/**
-	 * @param disabilities
-	 */
-	public void setDisabilities(ArrayList<String> disabilities) {
-		this.disabilities = disabilities;
+	public String getDisabilities() {
+		return disability;
 	}
 
 	/**
@@ -92,18 +82,45 @@ public class Child {
 		this.name = name;
 	}
 	
+	public int getAge(){
+		Calendar calendar1 = Calendar.getInstance(); //now
+	    Calendar calendar2 = Calendar.getInstance(); //date in past
+	    
+	    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+	    Date birth;
+	    
+	    try{
+	    	birth = df.parse(dateOfBirth);
+	    }catch(Exception e){
+	    	return 0;
+	    }
+	    
+	    calendar2.setTime(birth); //set date in past
+	    // just add one year at a time to the earlier date until it becomes later then the other one
+	    int years = 0;
+	    while(true)
+	    {
+	        calendar2.add(Calendar.YEAR, 1);
+
+	        //”if” statement checks if it needs to add one more year for current year
+	        // (whether or not day of old date falls before or after day this year)
+	        if(calendar2.getTimeInMillis() < calendar1.getTimeInMillis())
+	            years++;
+	        else
+
+	            return years;  //returns years as a string because it needs to be in a string to populate the label we use
+	    }	
+	}
+	
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("Name: " + name + "\n");
-		sb.append("Age: " + age + "\n");
+		sb.append("Date of Birth: " + dateOfBirth + "\n");
 		sb.append("Gender: " + gender + "\n");
 		sb.append("Disabilities: ");
-		for(int i = 0; i < disabilities.size()-1; i++){
-			sb.append(disabilities.get(i) + ", ");
-		}
-		sb.append(disabilities.get(disabilities.size()-1));
+		sb.append(disability);
 		
 		return sb.toString();
 	}

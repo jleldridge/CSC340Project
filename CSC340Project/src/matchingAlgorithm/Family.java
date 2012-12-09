@@ -17,21 +17,22 @@ public class Family {
 	
 	private String name;
 	private String address;
+	private String street;
+	private String city;
+	private String zip;
+	private String county;
 	private ArrayList<Child> children;
 	private Date dateJoined;
 	private String language;
 	private String ethnicity;
-	private int income;
-	//to check if the family is already matched
-	private boolean matched;
+	private String income;
 	
-	public Family(String name, String address, ArrayList<Child> children, String language, boolean matched){
+	public Family(String name, String address, ArrayList<Child> children, String language){
 		this.name = name;
 		this.address = address;
 		this.children = children;
 		this.dateJoined = dateJoined;
 		this.language = language;
-		this.matched = matched;
 	}
 
 	public String getName() {
@@ -90,20 +91,44 @@ public class Family {
 		this.ethnicity = ethnicity;
 	}
 
-	public int getIncome() {
+	public String getIncome() {
 		return income;
 	}
 
-	public void setIncome(int income) {
+	public void setIncome(String income) {
 		this.income = income;
 	}
 	
-	public void setMatched(boolean matched){
-		this.matched = matched;
+	public String getStreet() {
+		return street;
 	}
-	
-	public boolean isMatched(){
-		return matched;
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
 	}
 	
 	@Override
@@ -122,10 +147,7 @@ public class Family {
 			sb.append("     Age: " + c.getAge() + "\n");
 			sb.append("     Gender: " + c.getGender() + "\n");
 			sb.append("     Disabilities: ");
-			for(int i = 0; i < c.getDisabilities().size()-1; i++){
-				sb.append(c.getDisabilities().get(i) + ", ");
-			}
-			sb.append(c.getDisabilities().get(c.getDisabilities().size()-1) + "\n\n");
+			sb.append(c.getDisabilities() + "\n\n");
 		}
 		return sb.toString();
 	}

@@ -77,17 +77,11 @@ public class ButtonPanel extends JPanel {
 		agePanel.add(ageDiff);
 		this.add(agePanel);
 		
-		JPanel incomePanel = new JPanel();
 		c.gridx = 0;
 		c.gridy = 5;
 		income = new JCheckBox("Income Difference");
-		incomePanel.add(income);
+		this.add(income);
 		income.addItemListener(ilistener);
-		c.gridx = 1;
-		incomeDiff = new JTextField();
-		incomeDiff.setPreferredSize(new Dimension(150, 20));
-		incomePanel.add(incomeDiff);
-		this.add(incomePanel);
 	}
 
 	public JCheckBox getEthnicity() {

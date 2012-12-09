@@ -119,7 +119,7 @@ public class FamilyMatcher {
 				Family pf = iter.next();
 				//if the income difference between the families is higher than
 				//desired, they cannot be matched
-				if(Math.abs(f.getIncome() - pf.getIncome()) > incomeDiff){
+				if(!(f.getIncome().equals(pf.getIncome()))){
 					iter.remove();
 				}
 			}
@@ -134,12 +134,8 @@ public class FamilyMatcher {
 				Family pf = iter.next();
 				for(Child c : f.getChildren()){
 					for(Child pc : pf.getChildren()){
-						for(String d : c.getDisabilities()){
-							for(String pd : pc.getDisabilities()){
-								if(d.equalsIgnoreCase(pd)){
-									matchingChildren = true;
-								}
-							}
+						if(c.getDisabilities().equals(pc.getDisabilities())){
+							matchingChildren = true;
 						}
 					}
 				}
@@ -156,7 +152,14 @@ public class FamilyMatcher {
 				double distance;
 				String origin = f.getAddress().replace(' ', '+');
 				String destination = pf.getAddress().replace(' ', '+');
-				String distanceStr = Distance.getDistance(origin, destination);
+				String distanceStr;
+				try{
+					distanceStr = Distance.getDistance(origin, destination);
+				}catch(Exception e){
+					distanceStr = "0";
+				}
+				//remove the unit characters from the string so that only
+				//the numbers remain
 				distanceStr = distanceStr.replaceAll("[^\\d.]", "");
 				
 				distance = Double.parseDouble(distanceStr);

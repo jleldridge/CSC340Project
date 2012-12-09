@@ -44,9 +44,7 @@ public class FamilyPanel extends JPanel {
 			StringBuilder data = new StringBuilder();
 			for(Child c : f.getChildren()){
 				data.append(c.getName() + ":");
-				for(String d : c.getDisabilities()){
-					data.append(" " + d);
-				}
+				data.append(c.getDisabilities());
 				data.append("  ");
 			}
 			allFamiliesData[i][4] = data.toString();

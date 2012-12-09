@@ -56,9 +56,7 @@ public class ResultsPanel extends JPanel{
 			StringBuilder data = new StringBuilder();
 			for(Child c : f.getChildren()){
 				data.append(c.getName() + ":");
-				for(String d : c.getDisabilities()){
-					data.append(" " + d);
-				}
+				data.append(c.getDisabilities());
 				data.append("  ");
 			}
 			matchingFamiliesData[i][4] = data.toString();
